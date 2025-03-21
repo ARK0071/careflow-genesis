@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { 
@@ -34,6 +33,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import { Prescription, Medication, PRESCRIPTION_TEMPLATES, MEDICATIONS_DATABASE, checkInteractions } from '@/models/prescription';
 import { Plus, MessageCircle, Clock, Signature, AlertCircle, Phone } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import MedicationItem from './MedicationItem';
 import { useToast } from '@/hooks/use-toast';
 
@@ -66,7 +66,6 @@ const PrescriptionForm = ({ patientId, patientName, onSave, initialData }: Presc
     },
   });
   
-  // Update medications when template changes
   useEffect(() => {
     setFilteredMedications(
       MEDICATIONS_DATABASE.filter(med => 
@@ -75,14 +74,12 @@ const PrescriptionForm = ({ patientId, patientName, onSave, initialData }: Presc
     );
   }, [selectedTemplate]);
   
-  // Check for interactions whenever medications change
   useEffect(() => {
     if (medications.length >= 2) {
       const medicationNames = medications.map(med => med.name);
       const interactionResult = checkInteractions(medicationNames);
       
       if (interactionResult.hasInteraction) {
-        // Find which medications might be interacting
         const updatedMedications = medications.map(med => {
           if (interactionResult.details?.includes(med.name)) {
             return {
