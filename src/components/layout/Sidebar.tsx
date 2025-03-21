@@ -6,7 +6,6 @@ import {
   Users, 
   Calendar, 
   ClipboardList, 
-  Flask, 
   FileText, 
   Pill, 
   HeartPulse, 
@@ -15,7 +14,8 @@ import {
   MessageSquare,
   HelpCircle,
   ChevronRight,
-  ChevronLeft
+  ChevronLeft,
+  Beaker // Using Beaker instead of Flask
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -125,7 +125,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
             isCollapsed={!isOpen} 
           />
           <SidebarItem 
-            icon={<Flask className="h-5 w-5" />} 
+            icon={<Beaker className="h-5 w-5" />} 
             label="Lab & Tests" 
             to="/lab-test" 
             badge={3}

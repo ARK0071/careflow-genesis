@@ -8,7 +8,7 @@ import {
   FileText, 
   User, 
   Pill,
-  Flask,
+  Beaker, // Using Beaker instead of Flask
   HeartPulse,
   MoreHorizontal
 } from 'lucide-react';
@@ -114,7 +114,7 @@ const getActivityIcon = (type: ActivityType, priority?: Activity['priority']) =>
     case 'prescription':
       return <Pill className="h-5 w-5 text-teal-500" />;
     case 'lab':
-      return <Flask className="h-5 w-5 text-amber-500" />;
+      return <Beaker className="h-5 w-5 text-amber-500" />; // Using Beaker instead of Flask
     case 'vitals':
       return <HeartPulse className="h-5 w-5 text-rose-500" />;
     default:

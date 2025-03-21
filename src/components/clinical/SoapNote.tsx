@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   Form,
@@ -40,7 +39,6 @@ const SoapNote = ({ patientId, patientName, onSave, className }: SoapNoteProps) 
   const [isSaving, setIsSaving] = useState(false);
   const [aiGenerating, setAiGenerating] = useState(false);
   
-  // Form setup
   const form = useForm({
     defaultValues: {
       subjective: '',
@@ -57,7 +55,6 @@ const SoapNote = ({ patientId, patientName, onSave, className }: SoapNoteProps) 
   const handleSave = (data: any) => {
     setIsSaving(true);
     
-    // Simulate API call
     setTimeout(() => {
       console.log('Saving note:', data);
       
@@ -70,10 +67,9 @@ const SoapNote = ({ patientId, patientName, onSave, className }: SoapNoteProps) 
     }, 1500);
   };
   
-  const generateWithAI = (section: string) => {
+  const generateWithAI = (section: 'subjective' | 'objective' | 'assessment' | 'plan') => {
     setAiGenerating(true);
     
-    // Simulate AI generation
     setTimeout(() => {
       let generatedText = '';
       
@@ -90,8 +86,6 @@ const SoapNote = ({ patientId, patientName, onSave, className }: SoapNoteProps) 
         case 'plan':
           generatedText = '1. Follow up with stress test to rule out cardiac etiology\n2. Increase amlodipine from 5mg to 10mg daily for better BP control\n3. Lifestyle modifications: DASH diet, moderate exercise program starting with 20 min walking daily\n4. HbA1c to evaluate for diabetes\n5. Schedule follow-up in 2 weeks to review stress test results';
           break;
-        default:
-          generatedText = 'AI-generated content will appear here.';
       }
       
       form.setValue(section, generatedText);
