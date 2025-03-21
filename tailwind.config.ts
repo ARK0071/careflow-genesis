@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,23 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Clinical theme colors
+				clinical: {
+					DEFAULT: 'hsl(var(--clinical))',
+					foreground: 'hsl(var(--clinical-foreground))',
+					muted: 'hsl(var(--clinical-muted))',
+					'muted-foreground': 'hsl(var(--clinical-muted-foreground))',
+				},
+				admin: {
+					DEFAULT: 'hsl(var(--admin))',
+					foreground: 'hsl(var(--admin-foreground))',
+				},
+				alert: {
+					DEFAULT: 'hsl(var(--alert))',
+					foreground: 'hsl(var(--alert-foreground))',
+					muted: 'hsl(var(--alert-muted))',
+					'muted-foreground': 'hsl(var(--alert-muted-foreground))',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +102,40 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
+        'fade-out': {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' }
+        },
+        'slide-in-right': {
+          '0%': { transform: 'translateX(20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
+        },
+        'slide-out-left': {
+          '0%': { transform: 'translateX(0)', opacity: '1' },
+          '100%': { transform: 'translateX(-20px)', opacity: '0' }
+        },
+        'pulse-subtle': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.85' }
+        }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out forwards',
+        'fade-out': 'fade-out 0.3s ease-out forwards',
+        'slide-in-right': 'slide-in-right 0.3s ease-out forwards',
+        'slide-out-left': 'slide-out-left 0.3s ease-out forwards',
+        'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite'
+			},
+			fontFamily: {
+				sans: ['Inter var', 'sans-serif'],
+				display: ['SF Pro Display', 'Inter var', 'sans-serif']
 			}
 		}
 	},

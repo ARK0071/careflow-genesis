@@ -1,12 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Header from '@/components/layout/Header';
+import Sidebar from '@/components/layout/Sidebar';
+import Dashboard from './Dashboard';
 
 const Index = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const navigate = useNavigate();
+  
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header toggleSidebar={toggleSidebar} />
+      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      
+      <main className={`pt-24 pb-16 transition-all duration-300 ${sidebarOpen ? 'lg:pl-64' : 'lg:pl-20'}`}>
+        <Dashboard />
+      </main>
     </div>
   );
 };

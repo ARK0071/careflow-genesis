@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,8 +14,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 70% 50%;
+    --primary-foreground: 220 10% 97%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -32,23 +33,33 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Clinical theme colors */
+    --clinical: 175 80% 40%;
+    --clinical-foreground: 175 5% 97%;
+    --clinical-muted: 175 30% 95%;
+    --clinical-muted-foreground: 175 80% 25%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Admin theme colors */
+    --admin: 215 85% 35%;
+    --admin-foreground: 215 5% 97%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Alert theme colors */
+    --alert: 35 100% 60%;
+    --alert-foreground: 35 10% 15%;
+    --alert-muted: 35 100% 95%;
+    --alert-muted-foreground: 35 90% 30%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar theme */
+    --sidebar-background: 220 20% 98%;
+    --sidebar-foreground: 215 15% 25%;
+    --sidebar-primary: 220 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 25% 95%;
+    --sidebar-accent-foreground: 220 70% 30%;
+    --sidebar-border: 220 15% 92%;
+    --sidebar-ring: 215 70% 60%;
   }
 
   .dark {
@@ -61,7 +72,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -79,14 +90,32 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+
+    /* Clinical theme colors - dark mode */
+    --clinical: 175 60% 40%;
+    --clinical-foreground: 0 0% 100%;
+    --clinical-muted: 175 30% 25%;
+    --clinical-muted-foreground: 175 30% 90%;
+
+    /* Admin theme colors - dark mode */
+    --admin: 215 60% 50%;
+    --admin-foreground: 0 0% 100%;
+
+    /* Alert theme colors - dark mode */
+    --alert: 35 90% 55%;
+    --alert-foreground: 35 10% 10%;
+    --alert-muted: 35 70% 30%;
+    --alert-muted-foreground: 35 90% 85%;
+
+    /* Sidebar theme - dark mode */
+    --sidebar-background: 220 30% 12%;
+    --sidebar-foreground: 215 15% 85%;
+    --sidebar-primary: 220 70% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 220 25% 18%;
+    --sidebar-accent-foreground: 220 20% 85%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 215 70% 60%;
   }
 }
 
@@ -97,5 +126,102 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+/* Glass morphism effects */
+.glassmorphism {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
+}
+
+.dark .glassmorphism {
+  @apply bg-black/60 backdrop-blur-md border border-white/10 shadow-md;
+}
+
+/* Transitions */
+.page-transition-enter {
+  @apply opacity-0;
+}
+
+.page-transition-enter-active {
+  @apply opacity-100 transition-opacity duration-300;
+}
+
+.page-transition-exit {
+  @apply opacity-100;
+}
+
+.page-transition-exit-active {
+  @apply opacity-0 transition-opacity duration-300;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300/80 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400/90;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-gray-700/80;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600/90;
+}
+
+/* Hover effects */
+.hover-lift {
+  @apply transition-transform duration-200;
+}
+
+.hover-lift:hover {
+  @apply -translate-y-1;
+}
+
+/* Loading animations */
+.loading-shimmer {
+  @apply relative overflow-hidden bg-gray-200 dark:bg-gray-700;
+}
+
+.loading-shimmer::after {
+  @apply absolute top-0 right-0 bottom-0 left-0;
+  content: '';
+  animation: shimmer 2s infinite;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.dark .loading-shimmer::after {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
