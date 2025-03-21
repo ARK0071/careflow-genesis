@@ -1,13 +1,11 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
 import Dashboard from './Dashboard';
 
 const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const navigate = useNavigate();
   
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
