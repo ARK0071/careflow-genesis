@@ -4,9 +4,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Prescription } from '@/models/prescription';
-import { MessageCircle, Phone, Printer, Download, Edit } from 'lucide-react';
+import { MessageCircle, Phone, Printer, Download, Edit, Eye } from 'lucide-react';
 import MedicationItem from './MedicationItem';
 import { useToast } from '@/hooks/use-toast';
+import { Link } from 'react-router-dom';
 
 interface PrescriptionPreviewProps {
   prescription: Partial<Prescription>;
@@ -123,6 +124,14 @@ const PrescriptionPreview = ({ prescription, onEdit }: PrescriptionPreviewProps)
               <Printer className="h-4 w-4 mr-2" />
               Print
             </Button>
+            {prescription.id && (
+              <Button variant="outline" className="flex-1" asChild>
+                <Link to={`/patient-prescription/${prescription.id}`}>
+                  <Eye className="h-4 w-4 mr-2" />
+                  Patient View
+                </Link>
+              </Button>
+            )}
           </>
         ) : (
           <>
