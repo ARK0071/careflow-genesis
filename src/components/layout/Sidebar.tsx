@@ -15,7 +15,7 @@ import {
   HelpCircle,
   ChevronRight,
   ChevronLeft,
-  Beaker // Using Beaker instead of Flask
+  Beaker
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -36,9 +36,6 @@ interface SidebarItemProps {
 }
 
 const SidebarItem = ({ icon, label, to, badge, isCollapsed }: SidebarItemProps) => {
-  const location = useLocation();
-  const isActive = location.pathname === to;
-  
   return (
     <NavLink 
       to={to} 

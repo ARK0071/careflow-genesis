@@ -73,28 +73,28 @@ const Analytics = () => {
         <KPIMetricCard 
           title="Total Patients"
           value="1,254"
-          change="+12.3%"
+          // Remove the 'change' property that causes TypeScript errors
           trend="up"
           icon={<Users className="h-5 w-5" />}
         />
         <KPIMetricCard 
           title="Avg. Wait Time"
           value="24 min"
-          change="-8.5%"
+          // Remove the 'change' property that causes TypeScript errors
           trend="down"
           icon={<Clock className="h-5 w-5" />}
         />
         <KPIMetricCard 
           title="Bed Occupancy"
           value="78.2%"
-          change="+4.1%"
+          // Remove the 'change' property that causes TypeScript errors
           trend="up"
           icon={<BedDouble className="h-5 w-5" />}
         />
         <KPIMetricCard 
           title="Revenue"
           value="₹12.4L"
-          change="+18.7%"
+          // Remove the 'change' property that causes TypeScript errors
           trend="up"
           icon={<BadgeIndianRupee className="h-5 w-5" />}
         />
