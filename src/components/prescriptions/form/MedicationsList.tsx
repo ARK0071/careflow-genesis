@@ -2,6 +2,7 @@
 import React from 'react';
 import { Medication } from '@/models/prescription';
 import MedicationItem from '../MedicationItem';
+import { Card } from '@/components/ui/card';
 
 interface MedicationsListProps {
   medications: Medication[];
@@ -16,14 +17,17 @@ const MedicationsList: React.FC<MedicationsListProps> = ({
 }) => {
   if (medications.length === 0) {
     return (
-      <div className="text-center p-6 border border-dashed rounded-md">
-        <p className="text-muted-foreground">No medications added yet. Click "Add Medication" to begin.</p>
-      </div>
+      <Card className="text-center p-6 border border-dashed rounded-md">
+        <p className="text-muted-foreground">No medications added yet.</p>
+        <p className="text-sm text-muted-foreground mt-2">
+          Click "Add Medication" to manually add medications or use "Presets" for common conditions.
+        </p>
+      </Card>
     );
   }
 
   return (
-    <div>
+    <div className="space-y-2">
       {medications.map((med, index) => (
         <MedicationItem 
           key={index}
@@ -32,6 +36,9 @@ const MedicationsList: React.FC<MedicationsListProps> = ({
           isEditable={isEditable}
         />
       ))}
+      <p className="text-xs text-muted-foreground mt-2">
+        {medications.length} medication{medications.length !== 1 ? 's' : ''} added to prescription
+      </p>
     </div>
   );
 };

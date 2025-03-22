@@ -21,6 +21,13 @@ import MedicationDialog from './form/MedicationDialog';
 import MedicationsList from './form/MedicationsList';
 import PrescriptionTemplates from './form/PrescriptionTemplates';
 import PrescriptionSignature from './form/PrescriptionSignature';
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface PrescriptionFormProps {
   patientId?: string;
@@ -33,6 +40,7 @@ const PrescriptionForm = ({ patientId, patientName, onSave, initialData }: Presc
   const { toast } = useToast();
   const [selectedTemplate, setSelectedTemplate] = useState<string>(initialData?.template || 'general');
   const [signed, setSigned] = useState(initialData?.status === 'signed');
+  const [language, setLanguage] = useState<'english' | 'hindi' | 'both'>(initialData?.language || 'english');
   
   // Use custom hook for medications management
   const { 
@@ -51,7 +59,8 @@ const PrescriptionForm = ({ patientId, patientName, onSave, initialData }: Presc
       diagnosis: initialData?.diagnosis || '',
       notes: initialData?.notes || '',
       template: initialData?.template || 'general',
-      status: initialData?.status || 'draft'
+      status: initialData?.status || 'draft',
+      language: initialData?.language || 'english'
     },
   });
   
@@ -78,6 +87,7 @@ const PrescriptionForm = ({ patientId, patientName, onSave, initialData }: Presc
       medications,
       template: selectedTemplate,
       status: signed ? 'signed' : 'draft',
+      language: language,
       createdDate: new Date().toISOString().split('T')[0]
     };
     
@@ -123,6 +133,25 @@ const PrescriptionForm = ({ patientId, patientName, onSave, initialData }: Presc
                     </FormItem>
                   )}
                 />
+              </div>
+              
+              <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+                <div className="space-y-2">
+                  <FormLabel>Language</FormLabel>
+                  <Select 
+                    value={language} 
+                    onValueChange={(value) => setLanguage(value as 'english' | 'hindi' | 'both')}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select language" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="english">English</SelectItem>
+                      <SelectItem value="hindi">Hindi</SelectItem>
+                      <SelectItem value="both">Bilingual (English & Hindi)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
               
               <div className="space-y-2">
